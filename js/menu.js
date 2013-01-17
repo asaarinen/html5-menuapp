@@ -265,10 +265,62 @@ function Menu(parentelem, maxlevels) {
 	return item;
     }
 
-    function createMenuDivider(text) {
+    function createMenuDivider(text, itemclass) {
 	return createDiv('harea hbar rel menudivider', '',
-			 createDiv('menuitemtext', '', 
+			 createDiv('menuitemtext ' + itemclass, '', 
 				   createLabel(text, 'leftalign')));
+    }
+
+    function createMenuTextArea(text, itemclass) {
+	var textbox = createDiv('menuitemtextarea rel flexheight');
+	textbox.innerHTML = text;
+	
+	return createDiv('harea hbar rel flexheight menuitem plainbg ' + 
+			 itemclass, '', textbox);
+    }
+
+    function createMenuImage(imgurl, itemclass) {
+	var img = document.createElement('img');
+	img.setAttribute('class', 'menuimg');
+	img.setAttribute('src', imgurl);
+
+	img.onload = function(lvl) {
+	    return function() {
+		refresh(lvl);
+	    }}(currentLevel);
+
+	return createDiv('harea rel menuitem flexheight ' + itemclass, '', img);
+    }
+
+    function createMenuPage() {
+	return createDiv('harea menupage');
+    }
+
+    function createGridItem(itemclass, logo, logotext, bottomtext, center, onclick) {
+	var item = createDiv('menugriditem ' + (center?'menugriditem-center':'') + ' ' + itemclass);
+	
+	if( logotext )
+	    item.appendChild(createDiv('menugriditem-label', '', 
+				       createLabel(logotext, 'menugriditem-label-center')));
+	
+
+
+	if( logo ) {
+	    var logodiv = createDiv('menugriditem-icon', '');
+	    logodiv.style.backgroundImage = 'url(' + logo + ')';
+	    item.appendChild(logodiv);
+	}
+
+	if( bottomtext ) {
+	    item.appendChild(createDiv('menugriditem-label', '',
+				       createLabel(bottomtext, 
+						   'menugriditem-label-bottom')));
+	}
+	
+	if( onclick )
+	    item.onclick = onclick;
+	
+	return item;
     }
     
     // return the object
@@ -285,7 +337,11 @@ function Menu(parentelem, maxlevels) {
 	createMenuItem: createMenuItem,
 	createMenuItem2C: createMenuItem2C,
 	createBackItem: createBackItem,
-	createMenuDivider: createMenuDivider
+	createMenuDivider: createMenuDivider,
+	createMenuTextArea: createMenuTextArea,
+	createMenuImage: createMenuImage,
+	createMenuPage: createMenuPage,
+	createGridItem: createGridItem
     };
 }
 
@@ -310,17 +366,7 @@ function removelastmenuitem(level) {
 	  </div>
 */
 
-function createmenuimg(imgurl, itemclass) {
-    var item = document.createElement("div");
-    item.setAttribute("class", "harea rel menuitem " + itemclass);
 
-    var img = document.createElement('img');
-    img.setAttribute('class', 'menuimg');
-    img.setAttribute('src', imgurl);
-    item.appendChild(img);
-
-    return item;
-}
 
 
 
@@ -345,19 +391,7 @@ function createinstructionitem(divid, instr) {
     return item;
 }
 
-function createmenudesc(text) {
-    var item = document.createElement("div");
-    item.setAttribute("class", "harea hbar rel flexheight menuitem plainbg");
 
-    var textbox = document.createElement("div");
-    textbox.setAttribute("class", "menuitemdesc rel flexheight");
-    
-    textbox.innerHTML = text;
-
-    item.appendChild(textbox);
-    
-    return item;
-}
 
 function createmenusubtitle(text) {
     var item = document.createElement("div");

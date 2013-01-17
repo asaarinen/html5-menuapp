@@ -67,6 +67,18 @@
   height: 100%;
   text-align: left; }
 
+img.menuimg {
+  width: 100%; }
+
+.menuitemtextarea {
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 27px;
+  margin-right: 27px;
+  height: 100%;
+  text-align: left; }
+
 .menuitemtext1 {
   position: absolute;
   left: 47px;
@@ -81,6 +93,13 @@
   right: 47px;
   height: 100%;
   text-align: right !important; }
+
+.plainbg {
+  background-color: #303030;
+  background-image: none; }
+
+.flexheight {
+  height: auto; }
 
 .menuitemiconimg {
   position: absolute;
@@ -137,6 +156,13 @@
 
 .menusubtitle .menuitemtext {
   left: 15px; }
+
+.menupage {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px; }
 
 .menuitemsubtitle {
   text-align: center;
@@ -240,3 +266,52 @@ input {
 .footerlabel {
   vertical-align: bottom !important;
   font-size: 10px; }
+
+.menugriditem {
+  float: left;
+  width: 124px;
+  height: 124px;
+  margin: 12px 0px 12px 24px;
+  border-radius: 22px;
+  background-color: white;
+  left: 0px;
+  top: 0px;
+  border: none;
+  position: relative; }
+
+.menugriditem-center {
+  float: none;
+  margin-left: auto;
+  margin-right: auto; }
+
+.menugriditem-label-center th {
+  font-family: "Mate SC", "Helvetica Neue", HelveticaNeue, Helvetica-Neue, Helvetica, "BBAlpha Sans", sans-serif; }
+
+.menugriditem-icon {
+  position: absolute;
+  width: 124px;
+  height: 124px;
+  border-radius: 20px;
+  left: 0px;
+  top: 0px;
+  border: none;
+  z-index: 2; }
+
+.menugriditem-label {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  vertical-align: bottom;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  z-index: 3;
+  color: black; }
+
+.menugriditem-label-center {
+  vertical-align: middle; }
+
+th.menugriditem-label-bottom {
+  vertical-align: bottom; }
