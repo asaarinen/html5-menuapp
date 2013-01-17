@@ -296,8 +296,11 @@ function Menu(parentelem, maxlevels) {
 	return createDiv('harea menupage');
     }
 
-    function createGridItem(itemclass, logo, logotext, bottomtext, center, onclick) {
-	var item = createDiv('menugriditem ' + (center?'menugriditem-center':'') + ' ' + itemclass);
+    function createGridItem(size, itemclass, logo, logotext, bottomtext, 
+			    center, onclick) {
+	var item = createDiv('menugriditem-' + size + 'x' + size + ' ' + 
+			     (center?'menugriditem-center':'') + ' ' + 
+			     itemclass);
 	
 	if( logotext )
 	    item.appendChild(createDiv('menugriditem-label', '', 

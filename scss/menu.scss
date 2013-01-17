@@ -323,19 +323,31 @@ input {
     font-size: 10px;
 }
 
-.menugriditem {
-    float: left;
-    width: 124px;
-    height: 124px;
-    margin: 12px 0px 12px 24px;
-    border-radius: 22px;
-    background-color: white;
-    //background-image: -webkit-gradient(linear, left bottom, left top, from(#3a4554), to(#536884));
-    left: 0px;
-    top: 0px;
-    border: none;
+@mixin menugriditem {
     position: relative;
-    //overflow: hidden;
+    float: left;
+    -webkit-box-sizing: border-box;
+    background-color: white;
+    border: none;
+    border-radius: 20%;
+}
+
+.menugriditem-2x2 {
+    @include menugriditem;
+    padding: 17.5%;
+    margin: 5% 0% 5% 10%;
+}
+
+.menugriditem-3x3 {
+    @include menugriditem;
+    padding: 11.67%;
+    margin: 3.75% 0% 3.75% 7.5%;
+}
+
+.menugriditem-4x4 {
+    @include menugriditem;
+    padding: 9.375%;
+    margin: 2.5% 0% 2.5% 5%;
 }
 
 .menugriditem-center {
@@ -344,14 +356,10 @@ input {
     margin-right: auto;
 }
 
-.menugriditem-label-center th {
-    font-family: 'Mate SC', 'Helvetica Neue', HelveticaNeue, Helvetica-Neue, Helvetica, 'BBAlpha Sans', sans-serif;
-}
-
 .menugriditem-icon {
     position: absolute;
-    width: 124px;
-    height: 124px;
+    width: 100%;
+    height: 100%;
     border-radius: 20px;
     //background-image: -webkit-gradient(linear, left bottom, left top, from(#3a4554), to(#536884));
     left: 0px;

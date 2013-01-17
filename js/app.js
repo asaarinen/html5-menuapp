@@ -19,12 +19,22 @@ $(document).ready(function() {
     menu.addMenuItem(0, menu.createMenuItem('Item 3', null, function() {
 	menu.initSubMenu(1);
 	menu.addMenuTitle(1, menu.createBackItem(0, 'Back', ''));
-	menu.addMenuItem(1, menu.createGridItem('', null, 'Item 1', null, false, null));
-	menu.addMenuItem(1, menu.createGridItem('', null, null, 'Item 2', false, null));
-	menu.addMenuItem(1, menu.createGridItem('', null, null, 'Item 3', false, null));
-	menu.addMenuItem(1, menu.createGridItem('', null, 'Item 4', null, false, null));
-	menu.addMenuItem(1, menu.createGridItem('', null, 'Item 5', null, false, null));
-	menu.addMenuItem(1, menu.createGridItem('', null, 'Item 6', null, false, null));
+	menu.addMenuItem(1, menu.createMenuDivider('2x2 grid', null, null));
+	menu.addMenuItem(1, menu.createGridItem(2, '', null, 'Item 1', null, false, null));
+	menu.addMenuItem(1, menu.createGridItem(2, '', null, null, 'Item 2', false, null));
+	menu.addMenuItem(1, menu.createGridItem(2, '', null, null, 'Item 3', false, null));
+	menu.addMenuItem(1, menu.createGridItem(2, '', null, 'Item 4', null, false, null));
+	menu.addMenuItem(1, menu.createMenuDivider('3x3 grid', null, null));
+	menu.addMenuItem(1, menu.createGridItem(3, '', null, 'Item 5', null, false, null));
+	menu.addMenuItem(1, menu.createGridItem(3, '', null, 'Item 6', null, false, null));
+	menu.addMenuItem(1, menu.createMenuDivider('4x4 grid', null, null));
+	menu.addMenuItem(1, menu.createGridItem(4, '', null, 'Item 7', null, false, null));
+	menu.addMenuItem(1, menu.createGridItem(4, '', null, 'Item 8', null, false, null));
+	menu.addMenuItem(1, menu.createGridItem(4, '', null, 'Item 9', null, false, null));
+	menu.addMenuItem(1, menu.createGridItem(4, '', null, 'Item 10', null, false, null));
+	menu.addMenuItem(1, menu.createGridItem(4, '', null, 'Item 11', null, false, null));
+	menu.addMenuItem(1, menu.createGridItem(4, '', null, 'Item 12', null, false, null));
+	menu.addMenuItem(1, menu.createGridItem(4, '', null, 'Item 13', null, false, null));
 	menu.refresh(1);
 	menu.scrollUp(1);
 	menu.showSubMenu(1);
