@@ -1,0 +1,70 @@
+$headerheight: 62px;
+$headerbgcolor: rgb(240,240,240);
+
+div {    
+    overflow: hidden;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    border: none;
+
+    font-size: 14px;
+    text-align: left;
+    font-family: 'Verdana', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    text-shadow: none;
+    color: white;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.headerbar {
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    height: $headerheight;
+    background-color: $headerbgcolor;
+}
+
+.viewport {
+    position: absolute;
+    top: $headerheight;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.alertdialog {
+    position: absolute;
+    top: 40%;
+    height: 20%;
+    width: 80%;
+    left: 10%;
+    background-color: #303030;
+    z-index: 99;
+}
+
+table.table-centertext {
+    width: 100%;
+    height: 100%;
+}
+
+tr.table-centertext {
+    width: 100%;
+    height: 100%;
+}
+
+th.table-centertext {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: normal;
+    color: black;
+    text-shadow: none;
+}
+
