@@ -16,7 +16,6 @@ $(document).ready(function() {
     menu.addMenuItem(0, createmenuitem('Item 3', null, function() {
 	menu.initSubMenu(1, false);
 	menu.addMenuTitle(1, createbackitem(0, 'Back', '', function() {
-	    menu.refresh(0);
 	    menu.showSubMenu(0);
 	}));
 	menu.refresh(1);

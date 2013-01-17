@@ -150,6 +150,24 @@ function Menu(parentelem, maxlevels) {
     };
 }
 
+function createtable(innertext, thclass) {
+    var table = document.createElement("table");
+    table.setAttribute('class', 'table-centertext');
+    var tr = document.createElement("tr");
+    tr.setAttribute('class', 'table-centertext');
+    var th = document.createElement('th');
+    if( thclass )
+	th.setAttribute('class', 'table-centertext ' + thclass);
+    else
+	th.setAttribute('class', 'table-centertext');
+    tr.appendChild(th);
+    table.appendChild(tr);
+
+    th.innerHTML = innertext;
+
+    return table;
+}
+
 function removelastmenuitem(level) {
     var elem = document.getElementById('menuscroll' + level);
     if( elem )
@@ -238,24 +256,17 @@ function createmenuitem(text, itemclass, onclick) {
 	arrowbox.appendChild(arrowimg);
     }
 
-    var table = document.createElement("table");
-    table.setAttribute('class', 'table-centertext');
-    var tr = document.createElement("tr");
-    tr.setAttribute('class', 'table-centertext');
-    var th = document.createElement("th");
-    th.setAttribute("class", "leftalign table-centertext");
-    tr.appendChild(th);
-    table.appendChild(tr);
+    var table = createtable(text, 'leftalign');
     textbox.appendChild(table);
     
-    th.innerHTML = text;
-
     item.appendChild(iconbox);
     item.appendChild(textbox);
     if( onclick ) {
 	item.appendChild(arrowbox);
         item.onclick = onclick;
     }
+
+    new FastClick(item);
     
     return item;
 }
@@ -266,17 +277,10 @@ function createmenudivider(text) {
     var textbox = document.createElement("div");
     textbox.setAttribute("class", "menuitemtext");
     
-    var table = document.createElement("table");
-    var tr = document.createElement("tr");
-    var th = document.createElement("th");
-    th.setAttribute("class", "leftalign");
-    tr.appendChild(th);
-    table.appendChild(tr);
+    var table = createtable(text, 'leftalign');
     textbox.appendChild(table);
 
     item.appendChild(textbox);
-
-    th.innerHTML = text;
 
     return item;
 }
@@ -306,22 +310,10 @@ function createmenuitem2(text1, text2, iconurl, itemclass, onclick) {
     arrowimg.setAttribute("class", "menuitemarrowimg");
     arrowbox.appendChild(arrowimg);
     
-    var table = document.createElement("table");
-    var tr = document.createElement("tr");
-    var th = document.createElement("th");
-    th.setAttribute("class", "leftalign");
-    th.innerHTML = text1;
-    tr.appendChild(th);
-    table.appendChild(tr);
+    var table = createtable(text1, 'leftalign');
     textbox1.appendChild(table);
 
-    var table = document.createElement("table");
-    var tr = document.createElement("tr");
-    var th = document.createElement("th");
-    th.setAttribute("class", "leftalign");
-    th.innerHTML = text2;
-    tr.appendChild(th);
-    table.appendChild(tr);
+    var table = createtable(text2, 'leftalign');
     textbox2.appendChild(table);
 
     item.appendChild(iconbox);
@@ -345,15 +337,8 @@ function createinstructionitem(divid, instr) {
     var textbox = document.createElement("div");
     textbox.setAttribute("class", "menuitemtext instructiontextbox");
     
-    var table = document.createElement("table");
-    var tr = document.createElement("tr");
-    var th = document.createElement("th");
-    th.setAttribute("class", "instructiontext");
-    tr.appendChild(th);
-    table.appendChild(tr);
+    var table = createtable(instr, 'instructiontext');
     textbox.appendChild(table);
-    
-    th.innerHTML = instr;
 
     item.appendChild(mapdiv);
     item.appendChild(textbox);
@@ -416,15 +401,8 @@ function createbackitem(level, text, itemclass, onbackfun) {
     arrowimg.setAttribute("class", "menuitemarrowimg leftarrowimg");
     arrowbox.appendChild(arrowimg);
     
-    var table = document.createElement("table");
-    var tr = document.createElement("tr");
-    var th = document.createElement("th");
-    th.setAttribute("class", "subtitle");
-    tr.appendChild(th);
-    table.appendChild(tr);
+    var table = createtable(text, 'subtitle');
     textbox.appendChild(table);
-    
-    th.innerHTML = text;
     
     item.appendChild(textbox);
     item.appendChild(arrowbox);
@@ -455,15 +433,7 @@ function createmoreitem(text, onclick) {
     arrowimg.setAttribute("class", "menuitemarrowimg downarrowimg");
     arrowbox.appendChild(arrowimg);
     
-    var table = document.createElement("table");
-    var tr = document.createElement("tr");
-    var th = document.createElement("th");
-
-    th.setAttribute("class", "moreresults");
-    th.innerHTML = text;
-
-    tr.appendChild(th);
-    table.appendChild(tr);
+    var table = createtable(text, 'moreresults');
     textbox.appendChild(table);
     
     item.appendChild(textbox);
