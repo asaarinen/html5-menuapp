@@ -270,7 +270,9 @@ input {
 .menugriditem-2x2 {
   position: relative;
   float: left;
+  box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   background-color: white;
   border: none;
   border-radius: 20%;
@@ -280,7 +282,9 @@ input {
 .menugriditem-3x3 {
   position: relative;
   float: left;
+  box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   background-color: white;
   border: none;
   border-radius: 20%;
@@ -290,7 +294,9 @@ input {
 .menugriditem-4x4 {
   position: relative;
   float: left;
+  box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   background-color: white;
   border: none;
   border-radius: 20%;
