@@ -87,6 +87,23 @@ $searchicon: url('search-icon-30.png');
     text-align: left;
 }
 
+.menuitemtext1 {
+    position: absolute;
+    left: 47px;
+    right: 50%;;
+    height: 100%;
+    text-align: left;
+    z-index: 4;
+}
+
+.menuitemtext2 {
+    position: absolute;
+    left: 50%;
+    right: 47px;
+    height: 100%;
+    text-align: right !important;
+}
+
 .menuitemiconimg {
     position: absolute;
     width: 30px;
@@ -191,7 +208,7 @@ $searchicon: url('search-icon-30.png');
     top: 3px;
 }
 
-#searchbutton {
+.searchbutton {
     position: absolute;
     right: 0px;
     height: 100%;
@@ -201,7 +218,7 @@ $searchicon: url('search-icon-30.png');
     width: 64px;
 }
 
-#browsearrow {
+.browsearrow {
     position: absolute;
     width: 30px;
     height: 30px;
@@ -210,14 +227,6 @@ $searchicon: url('search-icon-30.png');
     background-image: url('browsebuttonimg-black.png');
     background-repeat: no-repeat;
     background-position: 0 0;
-}
-
-#browselabel {
-    position: absolute;
-    width: 64px;
-    top: 0px;
-    bottom: 0px;
-    right: 0px;
 }
 
 input {
@@ -260,3 +269,27 @@ input {
 .rel {
     position: relative;
 }
+
+.menudivider {
+    height: 25px;
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#006cae), to(#008cce));
+    background-image: -moz-linear-gradient(top, #008cce, #006cae);
+    background-color: #008cce;
+    color: white;
+}
+
+.menudivider th {
+    color: white;
+    font-weight: bold;
+}
+
+.leftalign {
+    text-align: left !important;
+}
+
+.footerlabel {
+    vertical-align: bottom !important;
+    font-size: 10px;
+}
+
+
