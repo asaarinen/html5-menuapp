@@ -195,8 +195,12 @@ function Menu(parentelem, maxlevels) {
 
 	var form = document.createElement('form');
 	form.setAttribute('class', 'searchform');
-	if( onsubmit )
-	    form.onsubmit = onsubmit;
+	if( onsubmit ) {
+	    form.onsubmit = function() {
+		onsubmit(input.value);
+		return false;
+	    }
+	}
 	form.appendChild(inputdiv);
 
 	var button = createDiv('searchbutton', '', 
