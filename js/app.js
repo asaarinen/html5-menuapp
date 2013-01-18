@@ -61,8 +61,15 @@ $(document).ready(function() {
 	menu.initSubMenu(1, false);
 	var pagediv = menu.createMenuPage();
 	pagediv.style.backgroundColor = 'rgb(200,50,50)';
+	pagediv.setAttribute('id', 'mapdiv');
 	menu.addMenuTitle(1, menu.createBackItem(0, 'Back', ''));
 	menu.addMenuItem(1, pagediv);
+
+	var template = 'http://c.tiles.mapbox.com/v3/examples.map-szwdot65/{Z}/{X}/{Y}.png';
+	var provider = new MM.TemplatedLayer(template);
+	var map = new MM.Map('mapdiv', provider);
+	map.setCenter({ lat: 64.0, lon: 25.6 }).setZoom(10);
+
 	menu.showSubMenu(1);
     }));
     menu.addMenuItem(0, menu.createMenuItem('Item 5', null, null));
