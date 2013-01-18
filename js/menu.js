@@ -1,4 +1,3 @@
-
 function Menu(parentelem, maxlevels) {
 
     if( maxlevels == null )
@@ -53,7 +52,7 @@ function Menu(parentelem, maxlevels) {
 	    panel = document.createElement('div');
 	    panel.setAttribute('class', 'menupanel');
 	    panel.setAttribute('id', 'menupanel' + level + menuid);
-	    panel.setAttribute('style', 'left: ' + (level*submenuwidth) + '%;');
+	    panel.setAttribute('style', 'width: ' + submenuwidth + '%; left: ' + (level*submenuwidth) + '%;');
 	    menuhoriz.appendChild(panel);
 	}
 	if( scrollers[level] ) {
@@ -62,19 +61,19 @@ function Menu(parentelem, maxlevels) {
 	}
 	
 	var title = document.createElement("div");
-	title.setAttribute("class", "harea hbar menuitem menutitle");
+	title.setAttribute("class", "menuitem-bar menuitem-title");
 	title.setAttribute("id", "menutitle" + level + menuid);
 	panel.appendChild(title);
 
 	var touch = document.createElement("div");
-	touch.setAttribute("class", "harea menutouch");
+	touch.setAttribute("class", "menutouch");
 	touch.setAttribute("id", "menutouch" + level + menuid);
 	panel.appendChild(touch);
 
 	if( scrollable ) {
 	    var scroll = document.createElement("div");
-	    scroll.setAttribute("class", "harea menuscroll");
-	    scroll.setAttribute("id", "menuscroll" + level + menuid);
+	    scroll.setAttribute('class', 'menuitems');
+	    scroll.setAttribute('id', 'menuitems' + level + menuid);
 	    
 	    touch.appendChild(scroll);
 	    
@@ -108,7 +107,7 @@ function Menu(parentelem, maxlevels) {
     function addMenuItem(level, item) {
 	if( level < 0 || level >= maxlevels )
 	    return;
-	var scroll = document.getElementById('menuscroll' + level + menuid);
+	var scroll = document.getElementById('menuitems' + level + menuid);
 	if( scroll )
 	    scroll.appendChild(item);
 	else {
@@ -157,14 +156,14 @@ function Menu(parentelem, maxlevels) {
 
     function createLabel(innertext, thclass) {
 	var table = document.createElement("table");
-	table.setAttribute('class', 'table-centertext');
+	table.setAttribute('class', 'label-centertext');
 	var tr = document.createElement("tr");
-	tr.setAttribute('class', 'table-centertext');
+	tr.setAttribute('class', 'label-centertext');
 	var th = document.createElement('th');
 	if( thclass )
-	    th.setAttribute('class', 'table-centertext ' + thclass);
+	    th.setAttribute('class', 'label-centertext ' + thclass);
 	else
-	    th.setAttribute('class', 'table-centertext');
+	    th.setAttribute('class', 'label-centertext');
 	tr.appendChild(th);
 	table.appendChild(tr);
 	
@@ -177,7 +176,7 @@ function Menu(parentelem, maxlevels) {
 	
 	var input = document.createElement('input');
 	input.setAttribute('type', 'search');
-	input.setAttribute('class', 'searchinput');
+	input.setAttribute('class', 'menuitem-search-input');
 	if( typeof inputid == 'string' )
 	    input.setAttribute('id', inputid);
 	if( typeof placeholder == 'string' )
@@ -188,13 +187,13 @@ function Menu(parentelem, maxlevels) {
 	    input.onchange = onedit;
 	}
 	
-	var icon = createDiv('searchicon');
+	var icon = createDiv('menuitem-search-icon');
 
-	var inputdiv = createDiv('searchinputdiv', null, 
+	var inputdiv = createDiv('menuitem-search-input-div', null, 
 	    [ input, icon ]);
 
 	var form = document.createElement('form');
-	form.setAttribute('class', 'searchform');
+	form.setAttribute('class', 'menuitem-search-form');
 	if( onsubmit ) {
 	    form.onsubmit = function() {
 		onsubmit(input.value);
@@ -203,28 +202,26 @@ function Menu(parentelem, maxlevels) {
 	}
 	form.appendChild(inputdiv);
 
-	var button = createDiv('searchbutton', '', 
-  	                       [ createLabel(placeholder, 'footerlabel'), 
- 	                         createDiv('browsearrow') ]);
+	var button = createDiv('menuitem-search-button', '', 
+  	                       [ createLabel(placeholder, 'label-footer-small'), 
+ 	                         createDiv('menuitem-search-submit-icon') ]);
 
-	var item = createDiv('harea hbar rel menuitem searcharea', null, 
+	var item = createDiv('menuitem-bar', null, 
 	    [ form, button ]);
 	return item;
     }
 
     function createMenuItem(text, itemclass, onclick) {
-	var item = createDiv('harea hbar rel menuitem ' + itemclass, '',
-	    [ createDiv('menuitemicon', '', createDiv('menuitemiconimg')),
-  	    createDiv('menuitemtext', '', createLabel(text, 'leftalign')) ]);
+	var item = createDiv('menuitem-bar ' + itemclass, '',
+	    [ createDiv('menuitem-bar-icon', '', createDiv('menuitem-bar-iconimg')),
+  	      createDiv('menuitem-bar-text', '', createLabel(text, 'label-leftalign')) ]);
 	
 	if( onclick ) {
-	    var arrowbox = createDiv('menuitemarrow', '', 
-		createDiv('menuitemarrowimg'));
+	    var arrowbox = createDiv('menuitem-bar-arrow', '', 
+		createDiv('menuitem-bar-arrowimg'));
 	    item.appendChild(arrowbox);
             item.onclick = onclick;
 	}
-
-	//new FastClick(item);
 	
 	return item;
     }
@@ -232,13 +229,16 @@ function Menu(parentelem, maxlevels) {
     function createMenuItem2C(text1, text2, itemclass, onclick) {
 	var arrowdiv = null;
 	if( onclick )
-	    arrowdiv = createDiv('menuitemarrow', '', 
-				 createDiv('menuitemarrowimg'));
-	var item = createDiv('harea hbar rel menuitem ' + itemclass, '', 
+	    arrowdiv = createDiv('menuitem-bar-arrow', '', 
+				 createDiv('menuitem-bar-arrowimg'));
+	var item = createDiv('menuitem-bar ' + itemclass, '', 
 	    [
-		createDiv('menuitemicon', '', createDiv('menuitemiconimg')),
-		createDiv('menuitemtext1', '', createLabel(text1, 'leftalign')),
-		createDiv('menuitemtext2', '', createLabel(text2)),
+		createDiv('menuitem-bar-icon', '', 
+			  createDiv('menuitem-bar-iconimg')),
+		createDiv('menuitem-bar-text1of2', '', 
+			  createLabel(text1, 'label-leftalign')),
+		createDiv('menuitem-bar-text2of2', '', 
+			  createLabel(text2, 'label-rightalign')),
 		arrowdiv
 	    ]);
 	
@@ -251,11 +251,12 @@ function Menu(parentelem, maxlevels) {
 
     function createBackItem(level, text, itemclass, onbackfun) {
 
-	var item = createDiv('harea hbar rel menuitem menutitle ' + itemclass,
+	var item = createDiv('menuitem-bar ' + itemclass,
 	    '',
-	    [ createDiv('menuitemtext', '', createLabel(text, 'subtitle')),
-  	      createDiv('menuitemarrow leftarrow', '', 
-	                createDiv('menuitemarrowimg leftarrowimg')) ]);
+	    [ createDiv('menuitem-bar-text', '', 
+	                createLabel(text, 'label-bold')),
+  	      createDiv('menuitem-bar-arrow-left', '', 
+	                createDiv('menuitem-bar-arrowimg-left')) ]);
 
 	item.onclick = function(l) { 
 	    var level = l; 
@@ -270,22 +271,23 @@ function Menu(parentelem, maxlevels) {
     }
 
     function createMenuDivider(text, itemclass) {
-	return createDiv('harea hbar rel menudivider', '',
-			 createDiv('menuitemtext ' + itemclass, '', 
-				   createLabel(text, 'leftalign')));
+	return createDiv('menuitem-bar menuitem-divider', '',
+			 createDiv('menuitem-bar-text ' + itemclass, '', 
+				   createLabel(text, 
+					       'label-bold label-leftalign')));
     }
 
     function createMenuTextArea(text, itemclass) {
-	var textbox = createDiv('menuitemtextarea rel flexheight');
+	var textbox = createDiv('menuitem-textarea');
 	textbox.innerHTML = text;
 	
-	return createDiv('harea hbar rel flexheight menuitem plainbg ' + 
+	return createDiv('menuitem-bar-autoheight ' + 
 			 itemclass, '', textbox);
     }
 
     function createMenuImage(imgurl, itemclass) {
 	var img = document.createElement('img');
-	img.setAttribute('class', 'menuimg');
+	img.setAttribute('class', 'menuitem-image');
 	img.setAttribute('src', imgurl);
 
 	img.onload = function(lvl) {
@@ -293,35 +295,34 @@ function Menu(parentelem, maxlevels) {
 		refresh(lvl);
 	    }}(currentLevel);
 
-	return createDiv('harea rel menuitem flexheight ' + itemclass, '', img);
+	return createDiv('menuitem-bar-autoheight ' + itemclass, '', img);
     }
 
     function createMenuPage() {
-	return createDiv('harea menupage');
+	return createDiv('menuitem-page');
     }
 
     function createGridItem(size, itemclass, logo, logotext, bottomtext, 
 			    center, onclick) {
-	var item = createDiv('menugriditem-' + size + 'x' + size + ' ' + 
-			     (center?'menugriditem-center':'') + ' ' + 
+	var item = createDiv('menuitem-grid-' + size + 'x' + size + ' ' + 
+			     (center?'menuitem-grid-center':'') + ' ' + 
 			     itemclass);
 	
 	if( logotext )
-	    item.appendChild(createDiv('menugriditem-label', '', 
-				       createLabel(logotext, 'menugriditem-label-center')));
+	    item.appendChild(createDiv('menuitem-grid-label', '', 
+				       createLabel(logotext, '')));
 	
 
 
 	if( logo ) {
-	    var logodiv = createDiv('menugriditem-icon', '');
+	    var logodiv = createDiv('menuitem-grid-icon', '');
 	    logodiv.style.backgroundImage = 'url(' + logo + ')';
 	    item.appendChild(logodiv);
 	}
 
 	if( bottomtext ) {
-	    item.appendChild(createDiv('menugriditem-label', '',
-				       createLabel(bottomtext, 
-						   'menugriditem-label-bottom')));
+	    item.appendChild(createDiv('menuitem-grid-label', '',
+				       createLabel(bottomtext, 'label-footer')));
 	}
 	
 	if( onclick )
@@ -352,144 +353,9 @@ function Menu(parentelem, maxlevels) {
     };
 }
 
-    
-
-
-function removelastmenuitem(level) {
-    var elem = document.getElementById('menuscroll' + level);
-    if( elem )
-	if( elem.hasChildNodes() ) 
-	    elem.removeChild(elem.lastChild);
-}
-
-
-/*
-          <div id="closekeypadbutton" onclick="closekeypad(); return true;">
-            <table>
-	      <tr>
-		<th id="closetext">Close Keypad</th>
-	      </tr>
-	    </table>
-	  </div>
-*/
 
 
 
-
-
-
-function createinstructionitem(divid, instr) {
-    var item = document.createElement("div");
-    item.setAttribute("class", "harea hbar rel menuitem instructionitem");
-
-    var mapdiv = document.createElement("div");
-    mapdiv.setAttribute("id", divid);
-    mapdiv.setAttribute("class", "instructionview");
-
-    var textbox = document.createElement("div");
-    textbox.setAttribute("class", "menuitemtext instructiontextbox");
-    
-    var table = createLabel(instr, 'instructiontext');
-    textbox.appendChild(table);
-
-    item.appendChild(mapdiv);
-    item.appendChild(textbox);
-    
-    return item;
-}
-
-
-
-function createmenusubtitle(text) {
-    var item = document.createElement("div");
-    item.setAttribute("class", "harea hbar rel flexheight menuitem plainbg");
-
-    var textbox = document.createElement("div");
-    textbox.setAttribute("class", "menuitemdesc menuitemsubtitle rel flexheight");
-    
-    textbox.innerHTML = text;
-
-    item.appendChild(textbox);
-    
-    return item;
-}
-
-function createmenudescbutton(text, onclick) {
-    var item = document.createElement("div");
-    item.setAttribute("class", "harea hbar rel flexheight menuitem plainbg noborder");
-
-    var textbox = document.createElement("div");
-    textbox.setAttribute("class", "menuitemdesc menuitemsubtitle rel flexheight menuitemdescbutton");
-    
-    textbox.innerHTML = text;
-
-    item.onclick = onclick;
-    item.appendChild(textbox);
-    
-    return item;
-}
-
-function createbackitem(level, text, itemclass, onbackfun) {
-    var item = document.createElement("div");
-    item.setAttribute("class", "harea hbar rel menuitem menutitle " + itemclass);
-    var textbox = document.createElement("div");
-    textbox.setAttribute("class", "menuitemtext");
-    var arrowbox = document.createElement("div");
-    arrowbox.setAttribute("class", "menuitemarrow leftarrow");
-
-    var arrowimg = document.createElement("div");
-    arrowimg.setAttribute("class", "menuitemarrowimg leftarrowimg");
-    arrowbox.appendChild(arrowimg);
-    
-    var table = createLabel(text, 'subtitle');
-    textbox.appendChild(table);
-    
-    item.appendChild(textbox);
-    item.appendChild(arrowbox);
-    
-    item.onclick = function(l) { 
-	var level = l; 
-	return function() { 
-	    if( onbackfun )
-		onbackfun(); 
-	    else
-		showsubmenu(level); 
-	} 
-    }(level);
-    
-    return item;
-}
-
-function createmoreitem(text, onclick) {
-    var item = document.createElement("div");
-    item.setAttribute("class", "harea hbar rel menuitem");
-    var textbox = document.createElement("div");
-    textbox.setAttribute("class", "menuitemtext");
-
-    var arrowbox = document.createElement("div");
-    arrowbox.setAttribute("class", "menuitemarrow downarrow");
-
-    var arrowimg = document.createElement("div");
-    arrowimg.setAttribute("class", "menuitemarrowimg downarrowimg");
-    arrowbox.appendChild(arrowimg);
-    
-    var table = createLabel(text, 'moreresults');
-    textbox.appendChild(table);
-    
-    item.appendChild(textbox);
-    item.appendChild(arrowbox);
-    
-    item.onclick = onclick;
-    
-    return item;
-}
-
-function createiframe(url) {
-    var elem = document.createElement('iframe');
-    elem.setAttribute('class', 'menuiframe');
-    elem.setAttribute('src', url);
-    return elem;
-}
 
 
 

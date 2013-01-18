@@ -15,7 +15,7 @@ $(document).ready(function() {
 		      ('Search', 'searchinput', 
 		       function(query) {
 			   menu.initSubMenu(1);
-			   menu.addMenuItem(1, menu.createBackItem(0, 'Searching \'' + query + '\'', ''));
+			   menu.addMenuTitle(1, menu.createBackItem(0, 'Searching \'' + query + '\'', ''));
 			   menu.addMenuItem(1, menu.createMenuDivider('Best Matches'));
 			   menu.addMenuItem(1, menu.createMenuItem('Search Result 1', null, function() {}));
 			   menu.addMenuItem(1, menu.createMenuItem('Search Result 2', null, function() {}));

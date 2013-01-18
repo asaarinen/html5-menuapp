@@ -1,70 +1,364 @@
-$headerheight: 62px;
+$menuitemheight: 62px;
+$textarea-margin: 20px;
+
+$menuitem-bgcolor: rgb(180,180,180);
+$menuitem-bordercolor: black;
+
+$menudividerheight: 25px;
+$menudivider-bgcolor: #006cae;
+
+$headerheight: $menuitemheight;
 $headerbgcolor: rgb(240,240,240);
+$menubgcolor: rgb(200,200,200);
 
-div, img {    
-    overflow: hidden;
-    padding: 0 0 0 0;
-    margin: 0 0 0 0;
-    border: none;
+$searchiconurl: 'search-icon-30.png';
 
-    font-size: 14px;
-    text-align: left;
-    font-family: 'Verdana', 'Helvetica Neue', sans-serif;
-    font-weight: bold;
-    text-shadow: none;
-    color: white;
+@mixin background-gradient($color) {
+    background-image: -webkit-gradient(linear, left bottom, left top, from(darken($color, 10%)), to(lighten($color,10%)));
+}
 
+@mixin background-icon-img($url, $width, $left, $top) {
+    @include container-div;
+    right: auto;
+    bottom: auto;
+    width: $width;
+    height: $width;
+    left: $left;
+    top: $top;
+    background-image: url($url);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+
+@mixin no-user-select {
+    user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     -o-user-select: none;
-    user-select: none;
+}
+
+@mixin transition($property, $delay, $fun) {
+    transition: $property $delay $fun;
+    -webkit-transition: -webkit-#{$property} $delay $fun;
+    -ms-transition: -ms-#{$property} $delay $fun;
+    -moz-transition: -moz-#{$property} $delay $fun;
+    -o-transition: -o-#{$property} $delay $fun;
+}
+
+@mixin transform($fun) {
+    transform: $fun;
+    -webkit-transform: $fun;
+    -ms-transform: $fun;
+    -moz-transform: $fun;
+    -o-transform: $fun;
+}
+
+@mixin plain-div {
+    overflow: hidden;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    border: none;
+}
+
+@mixin plain-bgcolor {
+    background-color: $menubgcolor;
+}
+
+@mixin no-outline {
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
+}
+
+input, input:focus, img, img:focus, div, div:focus, button, button:focus {
+    @include no-outline;
+    overflow: hidden;
+}
+
+body, div {    
+    @include plain-div;
+    @include no-user-select;
+}
+
+@mixin container-div {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: auto;
+    height: auto;
+}
+
+@mixin horizontal-fixed($height) {
+    @include container-div;
+    width: 100%;
+    height: $height;
+}
+
+@mixin relative-item {
+    position: relative;
+    float: left;
+}
+
+@mixin horizontal-rel {
+    @include relative-item;
+    width: 100%;
+    height: auto;
+}
+
+@mixin default-font {
+    font-size: 14px;
+    font-family: 'Verdana', 'Helvetica Neue', sans-serif;
+    font-weight: normal;
+    text-shadow: none;
+    color: white;
 }
 
 .headerbar {
-    position: absolute;
-    width: 100%;
-    left: 0px;
-    top: 0px;
-    height: $headerheight;
+    @include horizontal-fixed($headerheight);
     background-color: $headerbgcolor;
 }
 
 .viewport {
-    position: absolute;
+    @include container-div;
     top: $headerheight;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
 }
 
 #alertdialog {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
+    @include container-div;
     background-color: rgba(100,100,100,0.5);
     z-index: 99;
 }
 
-table.table-centertext {
+@mixin fill-relative-div {
     width: 100%;
     height: 100%;
 }
 
-tr.table-centertext {
-    width: 100%;
-    height: 100%;
+table.label-centertext, tr.label-centertext, th.label-centertext {
+    @include fill-relative-div;
 }
 
-th.table-centertext {
-    width: 100%;
-    height: 100%;
+th.label-centertext {
+    @include default-font;
     vertical-align: middle;
     text-align: center;
-    font-weight: normal;
-    color: black;
-    text-shadow: none;
 }
+
+th.label-leftalign {
+    text-align: left;
+}
+
+th.label-rightalign {
+    text-align: right;
+}
+
+th.label-footer {
+    vertical-align: bottom;
+}
+
+th.label-bold {
+    font-weight: bold;
+}
+
+th.label-footer-small {
+    @extend .label-footer;
+    font-size: 10px;
+}
+
+.menuarea {
+    @include container-div;
+}
+
+.menuhoriz {
+    @include container-div;
+    @include plain-bgcolor;
+    @include transition(transform, 0.35s, ease-out);
+    @include transform(translate3d(0,0,0));
+}
+
+.menupanel {
+    @include container-div;
+}
+
+.menutouch {
+    @include container-div;
+    top: $menuitemheight;
+}
+
+.menuitems {
+    @include horizontal-rel;
+}
+
+.menuitem-page {
+    @include container-div;
+}
+
+.menuitem-bar {
+    @include horizontal-rel;
+    @include background-gradient($menuitem-bgcolor);
+    height: $menuitemheight - 1;
+    border-bottom: 1px solid $menuitem-bordercolor;
+}
+
+.menuitem-divider {
+    @include background-gradient($menudivider-bgcolor);
+    height: $menudividerheight - 1;
+}
+
+.menuitem-bar-autoheight {
+    @extend .menuitem-bar;
+    height: auto;
+    @include plain-bgcolor;
+}
+
+.menuitem-bar-text {
+    @include container-div;
+    left: 47px;
+    right: 47px;
+}
+
+.menuitem-bar-text1of2 {
+    @extend .menuitem-bar-text;
+    right: 50%;
+}
+
+.menuitem-bar-text2of2 {
+    @extend .menuitem-bar-text;
+    left: 50%;
+}
+
+.menuitem-textarea {
+    @include horizontal-rel;
+    margin: $textarea-margin;
+}
+
+.menuitem-image {
+    @include plain-div;
+}
+
+.menuitem-bar-icon {
+    @include container-div;
+    right: auto;
+    width: 47px;
+}
+
+.menuitem-bar-iconimg {
+    @include background-icon-img('search-icon-30.png', 30px, 6px, 13px);
+}
+
+.menuitem-search-input-div {
+    @include container-div;
+}
+
+.menuitem-search-input {
+    @include container-div;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    right: 4px;
+    padding-left: 30px;
+    font-size: 18px;
+    -webkit-appearance: none;
+    border-radius: 25px;    
+}
+
+.menuitem-search-icon {
+    @include container-div;
+    top: 15px;
+    left: 13px;
+    width: 30px;
+    height: 30px;
+    background-image: url($searchiconurl);
+}
+
+.menuitem-search-submit-icon {
+    @include background-icon-img('browsebuttonimg.png', 30px, 17px, 15px);
+}
+
+.menuitem-search-form {
+    @include container-div;
+    right: 64px;
+}
+
+.menuitem-search-button {
+    @include container-div;
+    left: auto;
+    width: 64px;
+}
+
+.menuitem-bar-arrow {
+    @include container-div;
+    left: auto;
+    width: 47px;
+    right: 0px;
+}
+
+.menuitem-bar-arrow-left {
+    @extend .menuitem-bar-arrow;
+    left: 0px;
+    right: auto;
+}
+
+.menuitem-bar-arrow-right {
+    @extend .menuitem-bar-arrow;
+    left: 0px;
+    right: auto;
+}
+
+.menuitem-bar-arrowimg {
+    @include background-icon-img('arrow-right-black-30.png', 30px, 8px, 15px);
+}
+
+.menuitem-bar-arrowimg-left {
+    @include background-icon-img('arrow-left-black-30.png', 30px, 8px, 15px);
+}
+
+.menuitem-bar-arrowimg-down {
+    @include background-icon-img('arrow-down-black-30.png', 30px, 8px, 15px);
+}
+
+@mixin menuitem-grid {
+    position: relative;
+    float: left;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background-color: white;
+    border: none;
+    border-radius: 20%;
+    overflow: hidden;
+}
+
+.menuitem-grid-2x2 {
+    @include menuitem-grid;
+    padding: 17.5%;
+    margin: 5% 0% 5% 10%;
+}
+
+.menuitem-grid-3x3 {
+    @include menuitem-grid;
+    padding: 11.67%;
+    margin: 3.75% 0% 3.75% 7.5%;
+}
+
+.menuitem-grid-4x4 {
+    @include menuitem-grid;
+    padding: 9.375%;
+    margin: 2.5% 0% 2.5% 5%;
+}
+
+.menuitem-grid-center {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menuitem-grid-label {
+    @include container-div;
+}
+
+
+
 
