@@ -177,13 +177,17 @@ th.label-footer-small {
   float: left;
   width: 100%;
   height: auto;
+  width: auto;
+  left: 0px;
+  right: 0px;
   margin: 20px; }
 
 .menuitem-image {
   overflow: hidden;
   padding: 0 0 0 0;
   margin: 0 0 0 0;
-  border: none; }
+  border: none;
+  width: 100%; }
 
 .menuitem-bar-icon {
   position: absolute;

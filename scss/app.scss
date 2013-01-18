@@ -231,11 +231,16 @@ th.label-footer-small {
 
 .menuitem-textarea {
     @include horizontal-rel;
+    width: auto;
+    left: 0px;
+    right: 0px;
     margin: $textarea-margin;
 }
 
 .menuitem-image {
     @include plain-div;
+//    margin: $textarea-margin;
+    width: 100%;
 }
 
 .menuitem-bar-icon {
