@@ -104,6 +104,16 @@ function Menu(parentelem, maxlevels) {
 	    title.appendChild(item);
     }
 
+    function setMenuTitleHeight(level, height) {
+	var elem = document.getElementById('menutouch' + level + menuid);
+	if( elem )
+	    elem.style.top = height;
+
+	var elem = document.getElementById('menutitle' + level + menuid);
+	if( elem )
+	    elem.style.height = height;
+    }
+
     function addMenuItem(level, item) {
 	if( level < 0 || level >= maxlevels )
 	    return;
@@ -302,6 +312,10 @@ function Menu(parentelem, maxlevels) {
 	return createDiv('menuitem-page');
     }
 
+    function createBlankItem() {
+	return createDiv('menuitem-bar');
+    }
+
     function createGridItem(size, itemclass, logo, logotext, bottomtext, 
 			    center, onclick) {
 	var item = createDiv('menuitem-grid-' + size + 'x' + size + ' ' + 
@@ -337,6 +351,7 @@ function Menu(parentelem, maxlevels) {
 	initSubMenu: initSubMenu,
 	showSubMenu: showSubMenu,
 	addMenuTitle: addMenuTitle,
+	setMenuTitleHeight: setMenuTitleHeight,
 	addMenuItem: addMenuItem,
 	refresh: refresh,
 	scrollDown: scrollDown,
@@ -349,7 +364,8 @@ function Menu(parentelem, maxlevels) {
 	createMenuTextArea: createMenuTextArea,
 	createMenuImage: createMenuImage,
 	createMenuPage: createMenuPage,
-	createGridItem: createGridItem
+	createGridItem: createGridItem,
+	createBlankItem: createBlankItem
     };
 }
 

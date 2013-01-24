@@ -11,6 +11,11 @@ var menu = null;
 $(document).ready(function() {
     menu = Menu('menuarea');
     menu.initSubMenu(0);
+
+    var bi = menu.createBlankItem();
+    bi.style.backgroundColor = 'rgb(100,100,100)';
+    bi.style.backgroundImage = 'none';
+    menu.addMenuTitle(0, bi);
     menu.addMenuTitle(0, menu.createSearchItem
 		      ('Search', 'searchinput', 
 		       function(query) {
@@ -28,6 +33,8 @@ $(document).ready(function() {
 			   menu.scrollUp(1);
 			   menu.showSubMenu(1);
 		       }));
+    menu.setMenuTitleHeight(0, '124px');
+
     menu.addMenuItem(0, menu.createMenuDivider('Non-clickable items', null, null));
     menu.addMenuItem(0, menu.createMenuItem('Item 1', null, null));
     menu.addMenuItem(0, menu.createMenuItem('Item 2', null, null));
@@ -72,7 +79,24 @@ $(document).ready(function() {
 
 	menu.showSubMenu(1);
     }));
-    menu.addMenuItem(0, menu.createMenuItem('Item 5', null, null));
+    menu.addMenuItem(0, menu.createMenuItem('Blank Items', null, function() {
+	menu.initSubMenu(1);
+	menu.addMenuTitle(1, menu.createBackItem(0, 'Back',''));
+	var pagediv = menu.createBlankItem();
+	pagediv.style.backgroundColor = 'red';
+	pagediv.style.backgroundImage = 'none';
+	menu.addMenuItem(1, pagediv);
+	var pagediv = menu.createBlankItem();
+	pagediv.style.backgroundColor = 'green';
+	pagediv.style.backgroundImage = 'none';
+	menu.addMenuItem(1, pagediv);
+	var pagediv = menu.createBlankItem();
+	pagediv.style.backgroundColor = 'blue';
+	pagediv.style.backgroundImage = 'none';
+	menu.addMenuItem(1, pagediv);
+	
+	menu.showSubMenu(1);
+    }));
     menu.addMenuItem(0, menu.createMenuDivider('Text Area', null, null));
     menu.addMenuItem(0, menu.createMenuTextArea(
 	'<p>Tammikuinen aamu Puijon m&auml;kimontussa Kuopiossa. Pakkanen paukkuu parinkymmenen asteen tuntumassa, mutta m&auml;ess&auml; on p&auml;&auml;ll&auml; t&auml;ysi tohina.</p>' +
