@@ -127,6 +127,14 @@ function Menu(parentelem, maxlevels) {
 	}
     }
 
+    function addAbsoluteMenuItem(level, item) {
+	if( level < 0 || level >= maxlevels )
+	    return;
+	var touch = document.getElementById('menutouch' + level + menuid);
+	if( touch )
+	    touch.appendChild(item);	
+    }
+
     function refresh(level) {
 	if( level < 0 || level >= maxlevels )
 	    return;
@@ -353,6 +361,7 @@ function Menu(parentelem, maxlevels) {
 	addMenuTitle: addMenuTitle,
 	setMenuTitleHeight: setMenuTitleHeight,
 	addMenuItem: addMenuItem,
+	addAbsoluteMenuItem: addAbsoluteMenuItem,
 	refresh: refresh,
 	scrollDown: scrollDown,
 	scrollUp: scrollUp,

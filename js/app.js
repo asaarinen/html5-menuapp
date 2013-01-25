@@ -35,6 +35,11 @@ $(document).ready(function() {
 		       }));
     menu.setMenuTitleHeight(0, '124px');
 
+    var buttondiv = document.createElement('div');
+    buttondiv.setAttribute('style', 'position: absolute; right: 10px; top: 10px; width: 40px; height: 40px; background-image: url(http://upload.wikimedia.org/wikipedia/commons/thumb/9/97/ButtonRed.svg/40px-ButtonRed.svg.png)');
+    buttondiv.onclick = function() { alert('button clicked'); };
+    menu.addAbsoluteMenuItem(0, buttondiv);
+
     menu.addMenuItem(0, menu.createMenuDivider('Non-clickable items', null, null));
     menu.addMenuItem(0, menu.createMenuItem('Item 1', null, null));
     menu.addMenuItem(0, menu.createMenuItem('Item 2', null, null));
