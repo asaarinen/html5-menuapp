@@ -36,7 +36,11 @@ $(document).ready(function() {
     menu.setMenuTitleHeight(0, '124px');
 
     var buttondiv = document.createElement('div');
-    buttondiv.setAttribute('style', 'position: absolute; right: 10px; top: 10px; width: 40px; height: 40px; background-image: url(http://upload.wikimedia.org/wikipedia/commons/thumb/9/97/ButtonRed.svg/40px-ButtonRed.svg.png)');
+    buttondiv.setAttribute('style', 'position: absolute; right: 50px; top: 10px; width: 40px; height: 40px; background-image: url(http://upload.wikimedia.org/wikipedia/commons/thumb/9/97/ButtonRed.svg/40px-ButtonRed.svg.png); z-index: 10;');
+    buttondiv.onclick = function() { alert('button clicked'); };
+    menu.addMenuItem(0, buttondiv);
+    var buttondiv = document.createElement('div');
+    buttondiv.setAttribute('style', 'position: absolute; right: 10px; top: 10px; width: 40px; height: 40px; background-image: url(http://upload.wikimedia.org/wikipedia/commons/thumb/9/97/ButtonRed.svg/40px-ButtonRed.svg.png); z-index: 10;');
     buttondiv.onclick = function() { alert('button clicked'); };
     menu.addAbsoluteMenuItem(0, buttondiv);
 
